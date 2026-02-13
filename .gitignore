@@ -8,6 +8,13 @@ debug/
 cache/
 file-history/
 
+# IDE & editor files
+ide/
+
+# Python
+__pycache__/
+*.pyc
+
 # Credentials (never commit)
 *.pem
 *.key
