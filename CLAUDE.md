@@ -7,8 +7,8 @@
 
 ## Python
 
-- Use **Python 3.10+**.
-- Use **uv** for dependency management (not pip, poetry, or conda).
+- Use **Python 3.10 or 3.11**.
+- Use **uv** or **poetry** for dependency management.
 - Use `pyproject.toml` for project configuration (no `setup.py` or `setup.cfg`).
 - Prefer type hints for function signatures.
 - Follow PEP 8 naming conventions: `snake_case` for functions/variables, `PascalCase` for classes, `UPPER_SNAKE_CASE` for constants.
