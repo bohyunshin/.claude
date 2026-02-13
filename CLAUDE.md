@@ -1,0 +1,27 @@
+# CLAUDE.md
+
+## Language & Communication
+
+- All code, comments, and commit messages must be in **English**.
+- PR titles and bodies must be in **Korean**.
+
+## Python
+
+- Use **Python 3.10+**.
+- Use **uv** for dependency management (not pip, poetry, or conda).
+- Use `pyproject.toml` for project configuration (no `setup.py` or `setup.cfg`).
+- Prefer type hints for function signatures.
+- Follow PEP 8 naming conventions: `snake_case` for functions/variables, `PascalCase` for classes, `UPPER_SNAKE_CASE` for constants.
+
+## Git
+
+- Use **conventional commits**: `feat:`, `fix:`, `chore:`, `docs:`, `refactor:`, `test:`, `perf:`, `ci:`, `build:`.
+- Separate unrelated changes into distinct commits.
+- Never force-push or reset shared branches.
+
+## General Practices
+
+- Read existing code before modifying it.
+- Keep changes minimal and focused on the task at hand.
+- Do not add unnecessary abstractions, comments, or error handling.
+- Prefer editing existing files over creating new ones.
