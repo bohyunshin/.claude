@@ -1,0 +1,13 @@
+# Runtime & session data
+history.jsonl
+projects/
+session-env/
+shell-snapshots/
+todos/
+debug/
+cache/
+file-history/
+
+# Credentials (never commit)
+*.pem
+*.key
