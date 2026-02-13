@@ -14,6 +14,7 @@ ide/
 # Python
 __pycache__/
 *.pyc
+.venv/
 
 # Credentials (never commit)
 *.pem
