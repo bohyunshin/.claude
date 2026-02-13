@@ -3,7 +3,7 @@
 ## Language & Communication
 
 - All code, comments, and commit messages must be in **English**.
-- PR titles and bodies must be in **Korean**.
+- PR titles must be in **English**, PR bodies must be in **Korean**.
 
 ## Python
 

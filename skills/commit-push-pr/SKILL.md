@@ -1,6 +1,6 @@
 ---
 name: commit-push-pr
-description: Commit, push, and create a pull request in one workflow. Use when the user invokes /commit-push-pr or asks to commit and create a PR. Separates changes into purpose-based commits with conventional commit messages in English, pushes to remote, and opens a PR to the upstream repository with Korean title and body.
+description: Commit, push, and create a pull request in one workflow. Use when the user invokes /commit-push-pr or asks to commit and create a PR. Separates changes into purpose-based commits with conventional commit messages in English, pushes to remote, and opens a PR to the upstream repository with English title and Korean body.
 ---
 
 # Commit, Push, and Create PR
@@ -41,9 +41,11 @@ Push the current branch to the remote with `-u` flag:
 git push -u origin <branch-name>
 ```
 
-### 4. Create PR (only if upstream exists)
+### 4. Create PR (unless `--no-pr` is passed or no upstream exists)
 
-Check remotes:
+**If `--no-pr` argument is passed**, skip PR creation entirely. Just inform the user that commits have been pushed.
+
+Otherwise, check remotes:
 ```bash
 git remote -v
 ```
@@ -51,10 +53,10 @@ git remote -v
 - If an `upstream` remote exists → create a PR targeting the upstream repository.
 - If **no** `upstream` remote exists → **skip PR creation**. Just inform the user that commits have been pushed.
 
-When creating a PR, use `gh pr create`. Title and body must be in **Korean**.
+When creating a PR, use `gh pr create`. Title must be in **English**, body must be in **Korean**.
 
 ```bash
-gh pr create --repo <upstream-owner>/<repo> --title "<Korean title>" --body "$(cat <<'EOF'
+gh pr create --repo <upstream-owner>/<repo> --title "<English title>" --body "$(cat <<'EOF'
 ## 요약
 - <변경사항 요약 bullet points>
 
@@ -70,7 +72,9 @@ EOF
 ```
 
 Rules:
-- PR title and body must be in **Korean**.
+- If `--no-pr` is passed, do NOT create a PR. Only commit and push.
+- PR title must be in **English**.
+- PR body must be in **Korean**.
 - Use `--repo` flag to target the upstream repository.
 - Return the PR URL to the user when done.
 - If no upstream remote, do NOT create a PR. Only commit and push.
