@@ -8,6 +8,9 @@ debug/
 cache/
 file-history/
 paste-cache/
+plans/
+tasks/
+stats-cache.json
 
 # IDE & editor files
 ide/
