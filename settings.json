@@ -1,9 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git status)",
-      "Bash(git log:*)",
-      "Bash(git diff:*)",
+      "Bash(git:*)",
+      "Bash(uv:*)",
+      "Bash(poetry:*)",
+      "Bash(python3:*)",
       "Bash(npm test:*)",
       "Bash(npm run lint:*)",
       "Bash(npx tsc:*)"
