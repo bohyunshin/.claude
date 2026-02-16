@@ -20,7 +20,7 @@ Commit message format (English):
 <type>: <concise description>
 ```
 
-Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`, `perf`, `ci`, `build`
+Types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`, `perf`, `ci`, `cicd`, `build`
 
 Examples:
 - `feat: add user authentication endpoint`
@@ -50,13 +50,43 @@ Otherwise, check remotes:
 git remote -v
 ```
 
-- If an `upstream` remote exists → create a PR targeting the upstream repository.
-- If **no** `upstream` remote exists → **skip PR creation**. Just inform the user that commits have been pushed.
+- If an `upstream` remote exists → create a PR targeting the upstream repository using `--repo <upstream-owner>/<repo>`.
+- If **no** `upstream` remote exists → **ask the user** whether:
+  1. There is an upstream repository they want to add (if so, ask for the URL, add it with `git remote add upstream <url>`, and create a PR targeting it).
+  2. They want to open the PR on the current (`origin`) repository (create a PR without the `--repo` flag).
 
-When creating a PR, use `gh pr create`. Title must be in **English**, body must be in **Korean**.
+When creating a PR, use `gh pr create`. Title must follow the **conventional commit format** (`<type>: <description>`) in **English**, body must be in **Korean**.
+
+PR title format:
+```
+<type>: <concise description>
+```
+
+Types are the same as commit messages: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`, `perf`, `ci`, `cicd`, `build`.
+
+PR title examples:
+- `feat: add user authentication endpoint`
+- `fix: resolve null pointer in payment processing`
+- `chore: bump dependency versions`
 
 ```bash
-gh pr create --repo <upstream-owner>/<repo> --title "<English title>" --body "$(cat <<'EOF'
+# When targeting upstream:
+gh pr create --repo <upstream-owner>/<repo> --title "<type>: <English description>" --body "$(cat <<'EOF'
+## 요약
+- <변경사항 요약 bullet points>
+
+## 변경 내용
+- <상세 변경 내용>
+
+## 테스트
+- <테스트 관련 내용>
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+EOF
+)"
+
+# When targeting origin (no upstream):
+gh pr create --title "<type>: <English description>" --body "$(cat <<'EOF'
 ## 요약
 - <변경사항 요약 bullet points>
 
@@ -73,8 +103,8 @@ EOF
 
 Rules:
 - If `--no-pr` is passed, do NOT create a PR. Only commit and push.
-- PR title must be in **English**.
+- PR title must use **conventional commit format** (`<type>: <description>`) in **English**.
 - PR body must be in **Korean**.
-- Use `--repo` flag to target the upstream repository.
+- When upstream exists, use `--repo` flag to target the upstream repository.
+- When no upstream exists, ask the user before deciding the PR target.
 - Return the PR URL to the user when done.
-- If no upstream remote, do NOT create a PR. Only commit and push.
