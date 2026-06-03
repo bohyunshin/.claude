@@ -14,5 +14,6 @@
       "Bash(git push --force:*)",
       "Bash(git reset --hard:*)"
     ]
-  }
+  },
+  "effortLevel": "high"
 }
